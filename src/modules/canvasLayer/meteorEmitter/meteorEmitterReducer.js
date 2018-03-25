@@ -1,8 +1,5 @@
 import { Vector2 } from 'three';
-import {
-  PUSH_METEORS,
-  UPDATE_METEORS,
-} from './meteorEmitterAction';
+import { UPDATE_METEORS } from './meteorEmitterAction';
 import { random } from '../shared/utils';
 
 const createMeteor = () => {
