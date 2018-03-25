@@ -10,12 +10,15 @@ const Wrapper = styled.div`
   justify-content: center;
   color: white;
   font-weight: bold;
+  user-selected: none;
 `;
 
 const PrimaryButton = (props) => (
   <Wrapper
     className={props.className}
     onClick={props.onClick}
+    onMouseDown={props.onMouseDown}
+    onMouseUp={props.onMouseUp}
   >
     {props.label}
   </Wrapper>
@@ -24,6 +27,8 @@ PrimaryButton.defaultProps = {
   className: '',
   label: 'ボタン',
   onClick: () => {},
+  onMouseDown: () => {},
+  onMouseaUp: () => {},
 };
 
 export default PrimaryButton;
