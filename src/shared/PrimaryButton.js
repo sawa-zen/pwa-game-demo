@@ -21,6 +21,7 @@ const PrimaryButton = (props) => (
     onTouchEnd={props.onMouseUp}
     onMouseDown={props.onMouseDown}
     onMouseUp={props.onMouseUp}
+    onMouseLeave={props.onMouseLeave}
   >
     {props.label}
   </Wrapper>
@@ -31,6 +32,9 @@ PrimaryButton.defaultProps = {
   onClick: () => {},
   onMouseDown: () => {},
   onMouseaUp: () => {},
+  onTouchStart: () => {},
+  onTouchEnd: () => {},
+  onMouseLeave: () => {},
 };
 
 export default PrimaryButton;
