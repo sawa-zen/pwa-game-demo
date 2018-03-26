@@ -4,6 +4,7 @@ import {
   Scene,
   Vector2,
 } from 'three';
+import EventEmitter from 'eventemitter2';
 import Player from '../player/Player';
 import MeteorEmitter from '../meteorEmitter/MeteorEmitter';
 import Background from '../background/Background';
@@ -18,7 +19,23 @@ import {
 } from '../player/playerAction';
 import { updateMeteors } from '../meteorEmitter/meteorEmitterAction';
 
-class App {
+class App extends EventEmitter {
+  static _instance = null;
+  static get instance() {
+    return App._instance || new App();
+  }
+
+  constructor() {
+    super();
+
+    if (App._instance) {
+      return App._instance;
+    }
+
+    App._instance = this;
+    return this;
+  }
+
   init() {
     // DOM
     this._wrapper = document.getElementById('my-canvas');

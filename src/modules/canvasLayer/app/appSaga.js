@@ -8,6 +8,7 @@ import {
   REQUEST_CHECK_COLLISION,
 } from './appAction';
 import { setLifepoint } from '../player/playerAction';
+import App from './App';
 import store from './store';
 
 function* runRequestCheckCollision() {
@@ -37,6 +38,7 @@ function* runRequestCheckCollision() {
 
   if (newLifepoint <= 0) {
     yield put(setScene('score'));
+    App.instance.emit('changeScene', 'score');
   }
 }
 

@@ -5,6 +5,7 @@ import StartScene from '../startScene/StartScene';
 import GameScene from '../gameScene/GameScene';
 import ScoreScene from '../scoreScene/ScoreScene';
 import CanvasLayer from '../modules/canvasLayer';
+import { setScene } from './appAction';
 
 const renderScene = (scene) => {
   switch (scene) {
@@ -20,6 +21,7 @@ const App = pure((props) => (
     <CanvasLayer
       scene={props.scene}
       direction={props.direction}
+      onChangeScene={props.onChangeScene}
     />
     { renderScene(props.scene) }
   </div>
@@ -45,4 +47,13 @@ const mapStateToProps = (state) => ({
   })(),
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  onChangeScene: (scene) => {
+    dispatch(setScene(scene));
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);

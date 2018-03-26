@@ -11,6 +11,7 @@ class CanvasLayer extends React.Component {
   static defaultProps = {
     scene: 'start',
     direction: [0, 0],
+    onChangeScene: () => {},
   };
 
   componentWillReceiveProps(nextProps) {
@@ -23,6 +24,7 @@ class CanvasLayer extends React.Component {
 
   componentDidMount() {
     this.app.init();
+    this.app.on('changeScene', this.props.onChangeScene);
   }
 
   app = new App();
