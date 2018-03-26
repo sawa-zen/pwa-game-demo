@@ -1,4 +1,5 @@
 import React from 'react';
+import { pure } from 'recompose';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import {
@@ -24,7 +25,7 @@ const RightButton = styled(PrimaryButton)`
   width: 48px;
 `;
 
-const GameScene = (props) => (
+const GameScene = pure((props) => (
   <FullScreen>
     <LeftButton
       label="<"
@@ -37,7 +38,7 @@ const GameScene = (props) => (
       onMouseUp={props.onMouseUpRightButton}
     />
   </FullScreen>
-);
+));
 
 const mapStateToProps = (state) => ({
 });
