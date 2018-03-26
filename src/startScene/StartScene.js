@@ -1,4 +1,5 @@
 import React from 'react';
+import { pure } from 'recompose';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { setScene } from '../app/appAction';
@@ -27,7 +28,7 @@ const StartButton = styled(PrimaryButton)`
   width: 200px;
 `;
 
-const StartScene = (props) => (
+const StartScene = pure((props) => (
   <FullScreen>
     <Title>METEOR<br/>ESCAPE</Title>
     <StartButton
@@ -35,7 +36,7 @@ const StartScene = (props) => (
       onClick={props.onClickStart}
     />
   </FullScreen>
-);
+));
 
 const mapStateToProps = (state) => ({
 });
