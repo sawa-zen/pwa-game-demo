@@ -3,6 +3,7 @@ import {
   SET_LIFEPOINT,
   UPDATE_PLAYER,
   SET_DIRECTION,
+  RESET_PLAYER,
 } from './playerAction';
 import store from '../app/store';
 
@@ -11,7 +12,7 @@ const INIT_POSITION = new Vector2(0, -8);
 const initState = {
   lifepoint: 10,
   velocity: new Vector2(0, 0),
-  position: new Vector2(0, -8),
+  position: INIT_POSITION,
 };
 
 const getNewPosition = () => {
@@ -23,8 +24,9 @@ const getNewPosition = () => {
       return INIT_POSITION;
     case 'game':
       return position.clone().add(velocity);
+    default:
+      return position;
   }
-  return;
 };
 
 const playerReducer = (state = initState, action) => {
@@ -43,6 +45,10 @@ const playerReducer = (state = initState, action) => {
       return {
         ...state,
         position: getNewPosition(),
+      };
+    case RESET_PLAYER:
+      return {
+        ...initState,
       };
     default:
       return state;

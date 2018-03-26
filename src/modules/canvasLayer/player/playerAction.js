@@ -14,3 +14,8 @@ export const UPDATE_PLAYER = 'UPDATE_PLAYER';
 export const updatePlayer = () => ({
   type: UPDATE_PLAYER,
 });
+
+export const RESET_PLAYER = 'RESET_PLAYER';
+export const resetPlayer = () => ({
+  type: RESET_PLAYER,
+});

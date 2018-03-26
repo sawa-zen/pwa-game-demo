@@ -1,5 +1,8 @@
 import { Vector2 } from 'three';
-import { UPDATE_METEORS } from './meteorEmitterAction';
+import {
+  UPDATE_METEORS,
+  RESET_METEORS,
+} from './meteorEmitterAction';
 import { random } from '../shared/utils';
 
 const createMeteor = () => {
@@ -59,6 +62,10 @@ const meteorsReducer = (state = initState, action) => {
       return {
         ...state,
         meteors: updatePosition(state.meteors),
+      };
+    case RESET_METEORS:
+      return {
+        ...initState,
       };
     default:
       return state;

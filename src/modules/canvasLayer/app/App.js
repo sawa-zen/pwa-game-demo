@@ -16,8 +16,12 @@ import {
 import {
   setDirection,
   updatePlayer,
+  resetPlayer,
 } from '../player/playerAction';
-import { updateMeteors } from '../meteorEmitter/meteorEmitterAction';
+import {
+  updateMeteors,
+  resetMeteors,
+} from '../meteorEmitter/meteorEmitterAction';
 
 class App extends EventEmitter {
   static _instance = null;
@@ -76,7 +80,7 @@ class App extends EventEmitter {
     requestAnimationFrame(this._tick);
 
     const { scene } = store.getState().app;
-    if (scene === 'game') {
+    if (scene !== 'start') {
       store.dispatch(updatePlayer());
       store.dispatch(updateMeteors());
       store.dispatch(requestCheckCollision());
@@ -95,7 +99,24 @@ class App extends EventEmitter {
       props.direction[1],
     )));
 
-    store.dispatch(setScene(props.scene));
+    this._updateScene(props.scene);
+  }
+
+  _updateScene(newScene) {
+    const { scene } = store.getState().app;
+
+    // シーンに変更がなければ処理しない
+    if (scene === newScene) {
+      return;
+    }
+
+    if (scene === 'score') {
+      store.dispatch(resetPlayer());
+      store.dispatch(resetMeteors())
+    }
+
+    // シーンを変更する
+    store.dispatch(setScene(newScene));
   }
 }
 
