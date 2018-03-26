@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   justify-content: center;
   color: white;
   font-weight: bold;
-  user-selected: none;
+  user-select: none;
 `;
 
 const PrimaryButton = (props) => (
