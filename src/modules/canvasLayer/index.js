@@ -7,7 +7,20 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 
-class CanvasLayer extends React.PureComponent {
+class CanvasLayer extends React.Component {
+  static defaultProps = {
+    scene: 'start',
+    direction: [],
+  };
+
+  componentWillReceiveProps(nextProps) {
+    this.app.updateProps(nextProps);
+  }
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
   componentDidMount() {
     this.app.init();
   }

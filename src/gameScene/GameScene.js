@@ -6,6 +6,12 @@ import {
   FullScreen,
   PrimaryButton,
 } from '../shared';
+import {
+  setOnLeft,
+  setOffLeft,
+  setOnRight,
+  setOffRight,
+} from './gameSceneAction';
 
 const Wrapper = styled(FullScreen)`
   position: relative;
@@ -31,11 +37,13 @@ const GameScene = pure((props) => (
       label="<"
       onMouseDown={props.onMouseDownLeftButton}
       onMouseUp={props.onMouseUpLeftButton}
+      onMouseLeave={props.onMouseUpLeftButton}
     />
     <RightButton
       label=">"
       onMouseDown={props.onMouseDownRightButton}
       onMouseUp={props.onMouseUpRightButton}
+      onMouseLeave={props.onMouseUpRightButton}
     />
   </FullScreen>
 ));
@@ -45,16 +53,16 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onMouseDownLeftButton: () => {
-    console.info('left down');
+    dispatch(setOnLeft());
   },
   onMouseUpLeftButton: () => {
-    console.info('left up');
+    dispatch(setOffLeft());
   },
   onMouseDownRightButton: () => {
-    console.info('right down');
+    dispatch(setOnRight());
   },
   onMouseUpRightButton: () => {
-    console.info('right up');
+    dispatch(setOffRight());
   },
 });
 

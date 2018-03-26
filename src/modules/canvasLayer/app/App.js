@@ -2,12 +2,16 @@ import {
   WebGLRenderer,
   PerspectiveCamera,
   Scene,
+  Vector2,
 } from 'three';
 import Player from '../player/Player';
 import MeteorEmitter from '../meteorEmitter/MeteorEmitter';
 import Background from '../background/Background';
 import store from './store';
-import { updatePlayer } from '../player/playerAction';
+import {
+  setDirection,
+  updatePlayer,
+} from '../player/playerAction';
 import { updateMeteors } from '../meteorEmitter/meteorEmitterAction';
 
 class App {
@@ -50,6 +54,7 @@ class App {
   _tick = () => {
     requestAnimationFrame(this._tick);
 
+    store.dispatch(updatePlayer());
     store.dispatch(updateMeteors());
 
     this._background.update();
@@ -58,6 +63,13 @@ class App {
 
     this._renderer.render(this._scene, this._camera);
   };
+
+  updateProps(props) {
+    store.dispatch(setDirection(new Vector2(
+      props.direction[0],
+      props.direction[1],
+    )));
+  }
 }
 
 export default App;

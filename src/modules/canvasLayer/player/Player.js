@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import store from '../app/store';
 
 class Player extends THREE.Group {
   constructor() {
@@ -15,7 +16,9 @@ class Player extends THREE.Group {
   }
 
   update() {
+    const { position } = store.getState().player;
     this.rotation.y += 0.1;
+    this.position.set(position.x, position.y, 0);
   }
 }
 
