@@ -17,12 +17,11 @@ class Player extends THREE.Group {
 
   update() {
     const state = store.getState();
-    const { scene } = state.app;
-    const { position } = state.player;
+    const { position, lifepoint } = state.player;
 
     this.rotation.y += 0.1;
 
-    this.visible = scene !== 'score';
+    this.visible = !!lifepoint;
     this.position.set(position.x, position.y, 0);
   }
 }

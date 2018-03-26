@@ -1,6 +1,7 @@
-export const DECREMENT_LIFEPOINT = 'DECREMENT_LIFEPOINT';
-export const decrementLifepoint = () => ({
-  type: DECREMENT_LIFEPOINT,
+export const SET_LIFEPOINT = 'SET_LIFEPOINT';
+export const setLifepoint = (payload) => ({
+  type: SET_LIFEPOINT,
+  payload,
 });
 
 export const SET_DIRECTION = 'SET_DIRECTION';

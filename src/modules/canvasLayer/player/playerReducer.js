@@ -1,6 +1,6 @@
 import { Vector2 } from 'three';
 import {
-  DECREMENT_LIFEPOINT,
+  SET_LIFEPOINT,
   UPDATE_PLAYER,
   SET_DIRECTION,
 } from './playerAction';
@@ -29,10 +29,10 @@ const getNewPosition = () => {
 
 const playerReducer = (state = initState, action) => {
   switch (action.type) {
-    case DECREMENT_LIFEPOINT:
+    case SET_LIFEPOINT:
       return {
         ...state,
-        lifepoint: state.lifepoint--,
+        lifepoint: action.payload,
       };
     case SET_DIRECTION:
       return {
