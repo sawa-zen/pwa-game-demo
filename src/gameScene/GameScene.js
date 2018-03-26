@@ -32,7 +32,7 @@ const RightButton = styled(PrimaryButton)`
 `;
 
 const GameScene = pure((props) => (
-  <FullScreen>
+  <Wrapper>
     <LeftButton
       label="<"
       onMouseDown={props.onMouseDownLeftButton}
@@ -45,7 +45,7 @@ const GameScene = pure((props) => (
       onMouseUp={props.onMouseUpRightButton}
       onMouseLeave={props.onMouseUpRightButton}
     />
-  </FullScreen>
+  </Wrapper>
 ));
 
 const mapStateToProps = (state) => ({
