@@ -4,11 +4,27 @@ import {
   UPDATE_PLAYER,
   SET_DIRECTION,
 } from './playerAction';
+import store from '../app/store';
+
+const INIT_POSITION = new Vector2(0, -8);
 
 const initState = {
   lifepoint: 10,
   velocity: new Vector2(0, 0),
   position: new Vector2(0, -8),
+};
+
+const getNewPosition = () => {
+  const state = store.getState();
+  const { scene } = state.app;
+  const { position, velocity } = state.player;
+  switch (scene) {
+    case 'start':
+      return INIT_POSITION;
+    case 'game':
+      return position.clone().add(velocity);
+  }
+  return;
 };
 
 const playerReducer = (state = initState, action) => {
@@ -26,7 +42,7 @@ const playerReducer = (state = initState, action) => {
     case UPDATE_PLAYER:
       return {
         ...state,
-        position: state.position.clone().add(state.velocity),
+        position: getNewPosition(),
       };
     default:
       return state;

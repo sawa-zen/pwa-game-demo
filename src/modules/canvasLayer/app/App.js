@@ -9,6 +9,10 @@ import MeteorEmitter from '../meteorEmitter/MeteorEmitter';
 import Background from '../background/Background';
 import store from './store';
 import {
+  setScene,
+  requestCheckCollision,
+} from './appAction';
+import {
   setDirection,
   updatePlayer,
 } from '../player/playerAction';
@@ -54,8 +58,12 @@ class App {
   _tick = () => {
     requestAnimationFrame(this._tick);
 
-    store.dispatch(updatePlayer());
-    store.dispatch(updateMeteors());
+    const { scene } = store.getState().app;
+    if (scene === 'game') {
+      store.dispatch(updatePlayer());
+      store.dispatch(updateMeteors());
+      store.dispatch(requestCheckCollision());
+    }
 
     this._background.update();
     this._player.update();
@@ -69,6 +77,8 @@ class App {
       props.direction[0],
       props.direction[1],
     )));
+
+    store.dispatch(setScene(props.scene));
   }
 }
 

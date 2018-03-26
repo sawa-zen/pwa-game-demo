@@ -16,8 +16,13 @@ class Player extends THREE.Group {
   }
 
   update() {
-    const { position } = store.getState().player;
+    const state = store.getState();
+    const { scene } = state.app;
+    const { position } = state.player;
+
     this.rotation.y += 0.1;
+
+    this.visible = scene !== 'score';
     this.position.set(position.x, position.y, 0);
   }
 }

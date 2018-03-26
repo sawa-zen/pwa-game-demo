@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 class CanvasLayer extends React.Component {
   static defaultProps = {
     scene: 'start',
-    direction: [],
+    direction: [0, 0],
   };
 
   componentWillReceiveProps(nextProps) {
