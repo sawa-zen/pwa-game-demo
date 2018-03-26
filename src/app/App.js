@@ -1,4 +1,5 @@
 import React from 'react';
+import { pure } from 'recompose';
 import { connect } from 'react-redux';
 import StartScene from '../startScene/StartScene';
 import GameScene from '../gameScene/GameScene';
@@ -14,12 +15,14 @@ const renderScene = (scene) => {
   }
 };
 
-const App = (props) => (
+const App = pure((props) => (
   <div>
-    <CanvasLayer />
+    <CanvasLayer
+      scene={props.scene}
+    />
     { renderScene(props.scene) }
   </div>
-);
+));
 App.defaultProps = {
   scene: 'start',
 };
