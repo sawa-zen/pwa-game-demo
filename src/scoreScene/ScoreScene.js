@@ -25,16 +25,10 @@ const ScoreScene = pure((props) => (
   </Wrapper>
 ));
 
-const mapStateToProps = (state) => ({
-});
-
 const mapDispatchToProps = (dispatch) => ({
   onClickRetry: () => {
     dispatch(setScene('game'));
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ScoreScene);
+export default connect(null, mapDispatchToProps)(ScoreScene);
