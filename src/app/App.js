@@ -1,7 +1,7 @@
 import React from 'react';
 import { pure } from 'recompose';
 import { connect } from 'react-redux';
-import StartScene from '../startScene/StartScene';
+import TopScene from '../topScene/TopScene';
 import GameScene from '../gameScene/GameScene';
 import ScoreScene from '../scoreScene/ScoreScene';
 import CanvasLayer from '../modules/canvasLayer';
@@ -12,7 +12,7 @@ const renderScene = (scene) => {
     case 'game': return <GameScene />;
     case 'score': return <ScoreScene />;
     case 'start':
-    default: return <StartScene />;
+    default: return <TopScene />;
   }
 };
 

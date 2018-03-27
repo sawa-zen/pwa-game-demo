@@ -28,7 +28,7 @@ const StartButton = styled(PrimaryButton)`
   width: 200px;
 `;
 
-const StartScene = pure((props) => (
+const TopScene = pure((props) => (
   <FullScreen>
     <Title>METEOR<br/>ESCAPE</Title>
     <StartButton
@@ -50,4 +50,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(StartScene);
+)(TopScene);
