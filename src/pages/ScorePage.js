@@ -2,10 +2,12 @@ import React from 'react';
 import { pure } from 'recompose';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { setScene } from '../app/appAction';
-import { FullScreen, PrimaryButton } from '../shared';
+import { setCurrentPage } from '../router/routerAction';
+import PrimaryButton from '../components/PrimaryButton';
 
-const Wrapper = styled(FullScreen)``;
+const Wrapper = styled.div`
+  position: relative;
+`;
 
 const RetryButton = styled(PrimaryButton)`
   position: absolute;
@@ -27,7 +29,7 @@ const ScoreScene = pure((props) => (
 
 const mapDispatchToProps = (dispatch) => ({
   onClickRetry: () => {
-    dispatch(setScene('game'));
+    dispatch(setCurrentPage('game'));
   },
 });
 

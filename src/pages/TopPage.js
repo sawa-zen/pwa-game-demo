@@ -2,11 +2,9 @@ import React from 'react';
 import { pure } from 'recompose';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { setScene } from '../app/appAction';
-import {
-  FullScreen,
-  PrimaryButton,
-} from '../shared';
+import { setCurrentPage } from '../router/routerAction';
+import Page from '../components/Page';
+import PrimaryButton from '../components/PrimaryButton';
 
 const Title = styled.h1`
   position: absolute;
@@ -29,25 +27,22 @@ const StartButton = styled(PrimaryButton)`
 `;
 
 const TopScene = pure((props) => (
-  <FullScreen>
+  <Page>
     <Title>METEOR<br/>ESCAPE</Title>
     <StartButton
       label="START"
       onClick={props.onClickStart}
     />
-  </FullScreen>
+  </Page>
 ));
-
-const mapStateToProps = (state) => ({
-});
 
 const mapDispatchToProps = (dispatch) => ({
   onClickStart: () => {
-    dispatch(setScene('game'));
+    dispatch(setCurrentPage('game'));
   },
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(TopScene);

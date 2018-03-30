@@ -17,11 +17,6 @@ const PrimaryButton = (props) => (
   <Wrapper
     className={props.className}
     onClick={props.onClick}
-    onTouchStart={props.onMouseDown}
-    onTouchEnd={props.onMouseUp}
-    onMouseDown={props.onMouseDown}
-    onMouseUp={props.onMouseUp}
-    onMouseLeave={props.onMouseLeave}
   >
     {props.label}
   </Wrapper>
@@ -30,11 +25,6 @@ PrimaryButton.defaultProps = {
   className: '',
   label: 'ボタン',
   onClick: () => {},
-  onMouseDown: () => {},
-  onMouseaUp: () => {},
-  onTouchStart: () => {},
-  onTouchEnd: () => {},
-  onMouseLeave: () => {},
 };
 
 export default PrimaryButton;

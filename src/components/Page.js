@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const FullScreen = styled.div`
+const Page = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -10,4 +10,4 @@ const FullScreen = styled.div`
   height: 100%;
 `;
 
-export default FullScreen;
+export default Page;

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import appReducer from './appReducer';
+import routerReducer from './router/routerReducer';
 
 const reducers = combineReducers({
-  app: appReducer,
+  router: routerReducer,
 });
 
 export default reducers;
