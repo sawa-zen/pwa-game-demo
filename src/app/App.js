@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import TopScene from '../topScene/TopScene';
 import GameScene from '../gameScene/GameScene';
 import ScoreScene from '../scoreScene/ScoreScene';
-import CanvasLayer from '../modules/canvasLayer';
+import CanvasLayer from '../modules/gameLayer';
 import { setScene } from './appAction';
 
 const renderScene = (scene) => {
