@@ -5,7 +5,7 @@ import {
   SET_DIRECTION,
   RESET_PLAYER,
 } from './playerAction';
-import store from '../app/store';
+import store from '../../store';
 
 const INIT_POSITION = new Vector2(0, -8);
 

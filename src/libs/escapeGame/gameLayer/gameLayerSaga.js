@@ -1,15 +1,7 @@
-import {
-  put,
-  takeEvery,
-} from 'redux-saga/effects';
-import {
-  setScene,
-  REQUEST_SET_SCENE,
-  REQUEST_CHECK_COLLISION,
-} from './appAction';
+import { put, takeEvery } from 'redux-saga/effects';
+import { REQUEST_CHECK_COLLISION } from './gameLayerAction';
 import { setLifepoint } from '../player/playerAction';
-import App from './App';
-import store from './store';
+import store from '../store';
 
 function* runRequestCheckCollision() {
   const state = store.getState();
@@ -42,11 +34,6 @@ function* runRequestCheckCollision() {
   }
 }
 
-function* runRequestSetScene(action) {
-  yield put(setScene(action.payload));
-}
-
 export default function* appSaga() {
   yield takeEvery(REQUEST_CHECK_COLLISION, runRequestCheckCollision);
-  yield takeEvery(REQUEST_SET_SCENE, runRequestSetScene);
 }

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import store from '../app/store';
+import store from '../../store';
 
 class Player extends THREE.Group {
   constructor() {
@@ -11,15 +11,12 @@ class Player extends THREE.Group {
       new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true }),
     );
     this.add(mesh);
-
-    this.position.y = -9;
   }
 
   update() {
-    const state = store.getState();
-    const { position, lifepoint } = state.player;
+    const { position } = store.getState().player;
     this.rotation.y += 0.1;
-    this.visible = !!lifepoint;
+    // this.visible = !!lifepoint;
     this.position.set(position.x, position.y, 0);
   }
 }

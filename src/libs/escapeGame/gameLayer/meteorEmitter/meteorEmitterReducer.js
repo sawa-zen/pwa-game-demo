@@ -3,7 +3,7 @@ import {
   UPDATE_METEORS,
   RESET_METEORS,
 } from './meteorEmitterAction';
-import { random } from '../shared/utils';
+import { random } from '../../shared/utils';
 
 const createMeteor = () => {
   const position = new Vector2(
@@ -11,8 +11,8 @@ const createMeteor = () => {
     random(20, 40),
   );
   const velocity = new Vector2(
-    random(-5, 5, 100),
-    -random(5, 20, 100),
+    random(-5, 5) / 100,
+    -random(5, 20) / 100,
   );
   return {
     position,
