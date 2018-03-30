@@ -20,8 +20,7 @@ const App = pure((props) => (
   <div>
     <CanvasLayer
       scene={props.scene}
-      direction={props.direction}
-      onChangeScene={props.onChangeScene}
+      onDestroyed={props.onDestroyed}
     />
     { renderScene(props.scene) }
   </div>
@@ -32,24 +31,11 @@ App.defaultProps = {
 
 const mapStateToProps = (state) => ({
   scene: state.app.scene,
-  direction: (() => {
-    const { isOnLeft, isOnRight } = state.gameScene;
-    if (isOnLeft && !isOnRight) {
-      // 左キーだけ押されていた時
-      return [-1, 0];
-    } else if (!isOnLeft && isOnRight) {
-      // 右キーだけ押されていた時
-      return [1, 0]
-    }
-
-    // それ以外
-    return [0, 0]
-  })(),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeScene: (scene) => {
-    dispatch(setScene(scene));
+  onDestroyed: () => {
+    dispatch(setScene('score'));
   },
 });
 
