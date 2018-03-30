@@ -8,22 +8,17 @@ import Player from './player/Player';
 import Background from './background/Background';
 
 class GameLayer {
-  constructor(wrapperId) {
-    // DOM
-    this._wrapper = document.getElementById(wrapperId);
-    const screenW = this._wrapper.clientWidth;
-    const screenH = this._wrapper.clientHeight;
+  get domElement() {
+    return this._renderer.domElement;
+  }
 
+  constructor(wrapperId) {
     // レンダラー
     this._renderer = new WebGLRenderer();
     this._renderer.setPixelRatio(1);
-    this._renderer.setSize(screenW, screenH);
-    this._wrapper.appendChild(this._renderer.domElement);
 
     // カメラ
-    this._camera = new PerspectiveCamera(
-      45, screenW / screenH, 1, 100
-    );
+    this._camera = new PerspectiveCamera();
     this._camera.position.z = 50;
     this._camera.lookAt(0, 0, 0);
 
@@ -41,6 +36,12 @@ class GameLayer {
     // 背景
     this._background = new Background();
     this._scene.add(this._background);
+  }
+
+  setSize(width, height) {
+    this._camera.aspect = width / height;
+    this._camera.updateProjectionMatrix();
+    this._renderer.setSize(width, height);
   }
 
   update() {
