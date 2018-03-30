@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Page from '../components/Page';
 import EscapeGame from '../libs/escapeGame';
 
-class GameLayer extends React.Component {
+class GamePage extends React.Component {
   shouldComponentUpdate() {
     return false;
   }
@@ -28,4 +28,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(GameLayer);
+export default connect(null, mapDispatchToProps)(GamePage);
