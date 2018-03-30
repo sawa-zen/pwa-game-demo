@@ -4,13 +4,8 @@ import styled from 'styled-components';
 import Page from '../components/Page';
 import EscapeGame from '../libs/escapeGame';
 
-const Game = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
 class GameLayer extends React.Component {
-  static WRAPPER_ID = 'my-canvas';
+  static WRAPPER_ID = 'game-wrapper';
 
   shouldComponentUpdate() {
     return false;
@@ -23,9 +18,7 @@ class GameLayer extends React.Component {
 
   render() {
     return (
-      <Page>
-        <Game id="my-canvas" />
-      </Page>
+      <Page id={GameLayer.WRAPPER_ID} />
     );
   }
 }
@@ -35,4 +28,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default GameLayer;
+export default connect(null, mapDispatchToProps)(GameLayer);
