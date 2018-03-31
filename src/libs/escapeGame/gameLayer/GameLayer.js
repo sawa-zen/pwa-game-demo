@@ -9,6 +9,7 @@ import MeteorEmitter from './meteorEmitter/MeteorEmitter';
 import Background from './background/Background';
 import store from '../store';
 import { updatePlayer } from './player/playerAction';
+import { updateMeteors } from './meteorEmitter/meteorEmitterAction';
 
 class GameLayer {
   get domElement() {
@@ -49,6 +50,7 @@ class GameLayer {
 
   update() {
     store.dispatch(updatePlayer());
+    store.dispatch(updateMeteors());
 
     this._player.update();
     this._meteorEmitter.update();
