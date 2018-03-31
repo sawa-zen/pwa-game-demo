@@ -25,6 +25,10 @@ class EscapeGameBridge extends React.Component {
     this._element.appendChild(this._game.domElement);
   }
 
+  componentWillUnmount() {
+    this._game.dispose();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (
       this._game.status === 'destroyed' &&

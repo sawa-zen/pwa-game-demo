@@ -53,15 +53,17 @@ class EscapeGame extends EventEmitter {
   }
 
   retry() {
-    console.info('retry');
     store.dispatch(resetGame());
   }
 
   dispose() {
+    cancelAnimationFrame(this._animationFrameId);
+    store.dispatch(resetGame());
+    EscapeGame.instance = null;
   }
 
   _render = () => {
-    requestAnimationFrame(this._render);
+    this._animationFrameId = requestAnimationFrame(this._render);
     this._gameLayer.update();
     this._hudLayer.update();
   };
