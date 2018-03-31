@@ -2,6 +2,7 @@ import { delay } from 'redux-saga';
 import { put, takeEvery } from 'redux-saga/effects';
 import { REQUEST_CHECK_COLLISION } from './gameLayerAction';
 import { setStatus, setLifepoint } from './player/playerAction';
+import { stopTimer } from '../hudLayer/timer/timerAction';
 import store from '../store';
 
 function* runRequestCheckCollision() {
@@ -31,6 +32,7 @@ function* runRequestCheckCollision() {
   if (newLifepoint <= 0) {
     yield put(setStatus('destroyed'));
     yield put(setLifepoint(newLifepoint));
+    yield put(stopTimer());
     return;
   }
 
