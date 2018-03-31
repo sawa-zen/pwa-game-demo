@@ -21,7 +21,9 @@ class Timer extends PIXI.Container {
 
   update() {
     const { time } = store.getState().timer;
-    this._text.text = time;
+    const sec = ('000' + Math.floor(time / 60)).slice(-3);
+    const msec = ('00' + time % 60).slice(-2);
+    this._text.text = `${sec}.${msec}`;
   }
 }
 
