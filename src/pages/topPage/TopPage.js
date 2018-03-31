@@ -2,9 +2,9 @@ import React from 'react';
 import { pure } from 'recompose';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { setCurrentPage } from '../router/routerAction';
-import Page from '../components/Page';
-import PrimaryButton from '../components/PrimaryButton';
+import { setCurrentPage } from '../../router/routerAction';
+import Page from '../../components/Page';
+import PrimaryButton from '../../components/PrimaryButton';
 
 const Title = styled.h1`
   position: absolute;

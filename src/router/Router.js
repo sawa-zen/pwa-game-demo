@@ -1,16 +1,14 @@
 import React from 'react';
 import { pure } from 'recompose';
 import { connect } from 'react-redux';
-import TopPage from '../pages/TopPage';
-import GamePage from '../pages/GamePage';
-import ScorePage from '../pages/ScorePage';
+import TopPage from '../pages/topPage/TopPage';
+import GamePage from '../pages/gamePage/GamePage';
 import { setCurrentPage } from './routerAction';
 
 const renderPage = (currentPage) => {
   switch (currentPage) {
     case 'start': return <TopPage />;
     case 'game': return <GamePage />;
-    case 'score': return <ScorePage />;
     default: return <TopPage />;
   }
 };

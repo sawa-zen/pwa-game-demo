@@ -1,14 +1,24 @@
 import EventEmitter from 'eventemitter2';
 import GameLayer from './gameLayer/GameLayer';
 import HudLayer from './hudLayer/HudLayer';
+import store from './store';
+import { resetGame } from './app/appAction';
 
 class EscapeGame extends EventEmitter {
   get domElement() {
     return this._dom;
-  };
+  }
+
+  get status() {
+    return store.getState().player.status;
+  }
 
   constructor() {
     super();
+
+    if (EscapeGame.instance) {
+      return EscapeGame.instance;
+    }
 
     // DOM
     this._dom = document.createElement('div');
@@ -26,6 +36,9 @@ class EscapeGame extends EventEmitter {
 
     // 描画開始
     this._render();
+
+    EscapeGame.instance = this;
+    return this;
   }
 
   setSize(width, height) {
@@ -33,6 +46,18 @@ class EscapeGame extends EventEmitter {
     this._dom.style.height = `${height}px`;
     this._gameLayer.setSize(width, height);
     this._hudLayer.setSize(width, height);
+  }
+
+  emitPublicEvent(eventName) {
+    this.emit(eventName);
+  }
+
+  retry() {
+    console.info('retry');
+    store.dispatch(resetGame());
+  }
+
+  dispose() {
   }
 
   _render = () => {

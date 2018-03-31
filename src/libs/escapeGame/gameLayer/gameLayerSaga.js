@@ -4,6 +4,7 @@ import { REQUEST_CHECK_COLLISION } from './gameLayerAction';
 import { setStatus, setLifepoint } from './player/playerAction';
 import { stopTimer } from '../hudLayer/timer/timerAction';
 import store from '../store';
+import EscapeGame from '../index';
 
 function* runRequestCheckCollision() {
   const state = store.getState();
@@ -33,6 +34,7 @@ function* runRequestCheckCollision() {
     yield put(setStatus('destroyed'));
     yield put(setLifepoint(newLifepoint));
     yield put(stopTimer());
+    EscapeGame.instance.emitPublicEvent('destroyed');
     return;
   }
 

@@ -1,5 +1,6 @@
 import {
   UPDATE_TIME,
+  RESET_TIME,
   START_TIMER,
   STOP_TIMER,
 } from './timerAction';
@@ -32,6 +33,12 @@ const timerReducer = (state = initState, action) => {
       return {
         ...state,
         time: updateTime(state),
+      };
+    case RESET_TIME:
+      return {
+        ...state,
+        time: 0,
+        status: 'running',
       };
     default:
       return state;
