@@ -12,7 +12,8 @@ const INIT_POSITION = new Vector2(0, -8);
 
 const initState = {
   status: 'normal',
-  lifepoint: 10,
+  lifepoint: 3,
+  maxLifePoint: 3,
   velocity: new Vector2(0, 0),
   position: INIT_POSITION,
 };
@@ -38,7 +39,7 @@ const playerReducer = (state = initState, action) => {
     case SET_DIRECTION:
       return {
         ...state,
-        velocity: action.payload.multiplyScalar(0.005),
+        velocity: action.payload.normalize().multiplyScalar(0.3),
       };
     case UPDATE_PLAYER:
       return {
