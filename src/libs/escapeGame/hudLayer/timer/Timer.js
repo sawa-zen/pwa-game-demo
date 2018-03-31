@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import store from '../../store';
 
 class Timer extends PIXI.Container {
   constructor() {
@@ -19,6 +20,8 @@ class Timer extends PIXI.Container {
   }
 
   update() {
+    const { time } = store.getState().timer;
+    this._text.text = time;
   }
 }
 

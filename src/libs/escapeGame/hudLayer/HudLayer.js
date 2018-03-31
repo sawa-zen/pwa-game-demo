@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 import store from '../store';
 import AnalogStick from './analogStick/AnalogStick';
 import Timer from './timer/Timer';
+import { updateTime } from './timer/timerAction';
 
 class HudLayer {
   get domElement() {
@@ -41,6 +42,9 @@ class HudLayer {
     if (player.status === 'destroyed') {
       this._analogStick.visible = false;
     }
+
+    store.dispatch(updateTime());
+    this._timer.update();
 
     this._renderer.render(this._stage);
   }
