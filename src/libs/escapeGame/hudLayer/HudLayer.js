@@ -1,5 +1,7 @@
 import * as PIXI from 'pixi.js';
-import PixiAnalogStick from 'pixi-analog-stick';
+import PixiAnalogStick, { PUBLIC_EVENT_NAME } from 'pixi-analog-stick';
+import store from '../store';
+import { setStickData, resetStickData } from './hudLayerAction';
 
 class HudLayer {
   get domElement() {
@@ -19,6 +21,8 @@ class HudLayer {
     // アナログスティック
     this._analogStick = new PixiAnalogStick();
     this._analogStick.alpha = 0.5;
+    this._analogStick.on(PUBLIC_EVENT_NAME.MOVE, this._onMoveStick);
+    this._analogStick.on(PUBLIC_EVENT_NAME.RELEASE, this._onReleaseStick);
     this._stage.addChild(this._analogStick);
   }
 
@@ -31,6 +35,14 @@ class HudLayer {
   update() {
     this._renderer.render(this._stage);
   }
+
+  _onMoveStick = (stickData) => {
+    store.dispatch(setStickData(stickData));
+  };
+
+  _onReleaseStick = () => {
+    store.dispatch(resetStickData());
+  };
 }
 
 export default HudLayer;

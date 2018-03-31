@@ -1,6 +1,6 @@
 import { Group } from 'three';
 import Meteor from './Meteor';
-import store from '../app/store';
+import store from '../../store';
 
 class MeteorEmitter extends Group {
   _meteors = [];
