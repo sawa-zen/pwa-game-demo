@@ -21,7 +21,29 @@ const initState = {
 const getNewPosition = () => {
   const state = store.getState();
   const { position, velocity } = state.player;
-  return position.clone().add(velocity);
+  const newPosition = position.clone().add(velocity);
+  const MIN_X = -12,
+        MAX_X = 12,
+        MIN_Y = -20,
+        MAX_Y = 20;
+
+  if (newPosition.x < MIN_X) {
+    newPosition.x = MIN_X;
+  }
+
+  if (newPosition.x > MAX_X) {
+    newPosition.x = MAX_X;
+  }
+
+  if (newPosition.y < MIN_Y) {
+    newPosition.y = MIN_Y;
+  }
+
+  if (newPosition.y > MAX_Y) {
+    newPosition.y = MAX_Y;
+  }
+
+  return newPosition;
 };
 
 const playerReducer = (state = initState, action) => {
