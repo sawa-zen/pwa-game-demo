@@ -1,7 +1,8 @@
 import * as PIXI from 'pixi.js';
+import { Vector2 } from 'three';
 import PixiAnalogStick, { PUBLIC_EVENT_NAME } from 'pixi-analog-stick';
 import store from '../store';
-import { setStickData, resetStickData } from './hudLayerAction';
+import { setDirection } from '../gameLayer/player/playerAction';
 
 class HudLayer {
   get domElement() {
@@ -37,11 +38,14 @@ class HudLayer {
   }
 
   _onMoveStick = (stickData) => {
-    store.dispatch(setStickData(stickData));
+    store.dispatch(setDirection(new Vector2(
+      stickData.x,
+      -stickData.y,
+    )));
   };
 
   _onReleaseStick = () => {
-    store.dispatch(resetStickData());
+    store.dispatch(setDirection(new Vector2(0, 0)));
   };
 }
 

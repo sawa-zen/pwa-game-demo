@@ -17,16 +17,8 @@ const initState = {
 
 const getNewPosition = () => {
   const state = store.getState();
-  const { scene } = state.app;
   const { position, velocity } = state.player;
-  switch (scene) {
-    case 'start':
-      return INIT_POSITION;
-    case 'game':
-      return position.clone().add(velocity);
-    default:
-      return position;
-  }
+  return position.clone().add(velocity);
 };
 
 const playerReducer = (state = initState, action) => {
@@ -39,7 +31,7 @@ const playerReducer = (state = initState, action) => {
     case SET_DIRECTION:
       return {
         ...state,
-        velocity: action.payload.multiplyScalar(0.3),
+        velocity: action.payload.multiplyScalar(0.005),
       };
     case UPDATE_PLAYER:
       return {
