@@ -1,3 +1,9 @@
+export const SET_STATUS = 'SET_STATUS';
+export const setStatus = (status) => ({
+  type: SET_STATUS,
+  payload: status,
+});
+
 export const SET_LIFEPOINT = 'SET_LIFEPOINT';
 export const setLifepoint = (payload) => ({
   type: SET_LIFEPOINT,

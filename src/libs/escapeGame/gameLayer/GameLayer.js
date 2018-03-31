@@ -10,6 +10,7 @@ import Background from './background/Background';
 import store from '../store';
 import { updatePlayer } from './player/playerAction';
 import { updateMeteors } from './meteorEmitter/meteorEmitterAction';
+import { requestCheckCollision } from './gameLayerAction';
 
 class GameLayer {
   get domElement() {
@@ -51,6 +52,7 @@ class GameLayer {
   update() {
     store.dispatch(updatePlayer());
     store.dispatch(updateMeteors());
+    store.dispatch(requestCheckCollision());
 
     this._player.update();
     this._meteorEmitter.update();

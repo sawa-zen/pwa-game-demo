@@ -1,6 +1,7 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import { put, takeEvery, call } from 'redux-saga/effects';
 import { REQUEST_CHECK_COLLISION } from './gameLayerAction';
-import { setLifepoint } from '../player/playerAction';
+import { setStatus, setLifepoint } from './player/playerAction';
 import store from '../store';
 
 function* runRequestCheckCollision() {
@@ -10,7 +11,7 @@ function* runRequestCheckCollision() {
   let isCollision = false;
 
   // playerが既にやられていれば処理しない
-  if (player.lifepoint <= 0) {
+  if (player.status !== 'normal') {
     return;
   }
 
@@ -26,14 +27,22 @@ function* runRequestCheckCollision() {
   }
 
   const newLifepoint = player.lifepoint - 1;
-  yield put(setLifepoint(newLifepoint));
 
   if (newLifepoint <= 0) {
-    yield put(setScene('score'));
-    App.instance.emit('changeScene', 'score');
+    yield put(setStatus('destroyed'));
+    yield put(setLifepoint(newLifepoint));
+    return;
   }
+
+  // 2秒間無敵状態
+  yield put(setStatus('damage'));
+  yield delay(500);
+  yield put(setStatus('invincible'));
+  yield put(setLifepoint(newLifepoint));
+  yield delay(1500);
+  yield put(setStatus('normal'));
 }
 
-export default function* appSaga() {
+export default function* gameLayerSaga() {
   yield takeEvery(REQUEST_CHECK_COLLISION, runRequestCheckCollision);
 }

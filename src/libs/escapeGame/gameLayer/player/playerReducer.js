@@ -1,5 +1,6 @@
 import { Vector2 } from 'three';
 import {
+  SET_STATUS,
   SET_LIFEPOINT,
   UPDATE_PLAYER,
   SET_DIRECTION,
@@ -10,6 +11,7 @@ import store from '../../store';
 const INIT_POSITION = new Vector2(0, -8);
 
 const initState = {
+  status: 'normal',
   lifepoint: 10,
   velocity: new Vector2(0, 0),
   position: INIT_POSITION,
@@ -23,6 +25,11 @@ const getNewPosition = () => {
 
 const playerReducer = (state = initState, action) => {
   switch (action.type) {
+    case SET_STATUS:
+      return {
+        ...state,
+        status: action.payload,
+      };
     case SET_LIFEPOINT:
       return {
         ...state,
