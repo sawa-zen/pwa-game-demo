@@ -31,7 +31,7 @@ class HudLayer {
     this._analogStick.x = width / 2;
     this._analogStick.y = height - 90;
     this._timer.x = width / 2;
-    this._timer.y = 56;
+    this._timer.y = 20;
     this._renderer.resize(width, height);
   }
 

@@ -8,12 +8,12 @@ class Timer extends PIXI.Container {
       '00.00',
       {
         fontFamily : 'Arial',
-        fontSize: 64,
+        fontSize: 36,
         fill : 0xffffff,
         align : 'center',
       },
     );
-    this._text.anchor.set(0.5);
+    this._text.anchor.set(0.5, 0);
 
     this.addChild(this._text);
   }
