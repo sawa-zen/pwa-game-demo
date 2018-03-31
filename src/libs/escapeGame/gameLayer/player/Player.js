@@ -28,21 +28,26 @@ class Player extends THREE.Group {
     this.rotation.y += 0.1;
     this.position.set(position.x, position.y, 0);
 
-    if (status == 'destroyed') {
-      this.visible = false;
-      this._material.opacity = 0;
-    } else if (status == 'damage') {
-      this.visible = true;
-      this._material.opacity = 1;
-      this._material.color = new THREE.Color(0xff0000);
-    } else if (status == 'invincible') {
-      this.visible = true;
-      this._material.opacity = 0.3;
-      this._material.color = new THREE.Color(0xffffff);
-    } else {
-      this.visible = true;
-      this._material.opacity = 1;
-      this._material.color = new THREE.Color(0xffffff);
+    switch (status) {
+      case 'destroyed':
+        this.visible = false;
+        this._material.opacity = 0;
+        break;
+      case 'damage':
+        this.visible = true;
+        this._material.opacity = 1;
+        this._material.color = new THREE.Color(0xff0000);
+        break;
+      case 'invincible':
+        this.visible = true;
+        this._material.opacity = 0.3;
+        this._material.color = new THREE.Color(0xffffff);
+        break;
+      default:
+        this.visible = true;
+        this._material.opacity = 1;
+        this._material.color = new THREE.Color(0xffffff);
+        break;
     }
     this._material.needsUpdate = true;
   }

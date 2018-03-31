@@ -11,6 +11,7 @@ const renderPage = (currentPage) => {
     case 'start': return <TopPage />;
     case 'game': return <GamePage />;
     case 'score': return <ScorePage />;
+    default: return <TopPage />;
   }
 };
 

@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga';
-import { put, takeEvery, call } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import { REQUEST_CHECK_COLLISION } from './gameLayerAction';
 import { setStatus, setLifepoint } from './player/playerAction';
 import store from '../store';

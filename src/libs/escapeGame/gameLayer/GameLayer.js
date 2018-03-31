@@ -2,7 +2,6 @@ import {
   WebGLRenderer,
   PerspectiveCamera,
   Scene,
-  Vector2,
 } from 'three';
 import Player from './player/Player';
 import MeteorEmitter from './meteorEmitter/MeteorEmitter';
