@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import store from '../store';
 import AnalogStick from './analogStick/AnalogStick';
+import Timer from './timer/Timer';
 
 class HudLayer {
   get domElement() {
@@ -20,6 +21,10 @@ class HudLayer {
     // アナログスティック
     this._analogStick = new AnalogStick();
     this._stage.addChild(this._analogStick);
+
+    // タイマー
+    this._timer = new Timer();
+    this._stage.addChild(this._timer);
   }
 
   setSize(width, height) {
