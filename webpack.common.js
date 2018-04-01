@@ -18,7 +18,7 @@ module.exports = {
     new CleanWebpackPlugin([assetsPath], { root: projectRootPath }),
     new HtmlWebpackPlugin({
       hash: true,
-      title: 'pwa-game-sample',
+      title: 'METEOR',
       filename: 'index.html',
       template: './src/template.html',
       chunks: ['index'],
