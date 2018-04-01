@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: fixed;
+  top: 0;
   top: env(safe-area-inset-top);
   left: 0;
   right: 0;
