@@ -1,0 +1,20 @@
+runtime: go
+api_version: go1
+
+# デフォルトでキャッシュを効かせる場合の記載
+# default_expiration: "4d 5h"
+
+handlers:
+- url: /
+  static_files: dist/index.html
+  upload: dist/index.html
+
+- url: /(.*\.(html|js))$
+  static_files: dist/\1
+  upload: dist/.*\.(html|js)$
+
+- url: /.*
+  script: _go_app
+
+skip_files:
+  - ^node_modules/(?!node\.js$).*
