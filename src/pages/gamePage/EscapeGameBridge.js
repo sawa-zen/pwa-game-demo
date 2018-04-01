@@ -5,8 +5,6 @@ import EscapeGame from '../../libs/escapeGame';
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding-top: constant(safe-area-inset-top);
-  padding-left: constant(safe-area-inset-left);
 `;
 
 class EscapeGameBridge extends React.Component {
