@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 import store from '../store';
 import AnalogStick from './analogStick/AnalogStick';
 import Timer from './timer/Timer';
+import LifeGauge from './lifeGauge/LifeGauge';
 import { startTimer, updateTime } from './timer/timerAction';
 
 class HudLayer {
@@ -27,13 +28,18 @@ class HudLayer {
     this._timer = new Timer();
     this._stage.addChild(this._timer);
     store.dispatch(startTimer());
+
+    // ライフゲージ
+    this._lifeGauge = new LifeGauge();
+    this._stage.addChild(this._lifeGauge);
   }
 
   setSize(width, height) {
     this._analogStick.x = width / 2;
     this._analogStick.y = height - 90;
     this._timer.x = width / 2;
-    this._timer.y = 20;
+    this._timer.y = 40;
+    this._lifeGauge.width = width;
     this._renderer.resize(width, height);
   }
 
@@ -48,6 +54,7 @@ class HudLayer {
 
     store.dispatch(updateTime());
     this._timer.update();
+    this._lifeGauge.update();
 
     this._renderer.render(this._stage);
   }

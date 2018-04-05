@@ -28,7 +28,7 @@ function* runRequestCheckCollision() {
     return;
   }
 
-  const newLifepoint = player.lifepoint - 1;
+  const newLifepoint = player.lifePoint - 1;
 
   if (newLifepoint <= 0) {
     yield put(setStatus('destroyed'));
@@ -39,10 +39,10 @@ function* runRequestCheckCollision() {
   }
 
   // 2秒間無敵状態
+  yield put(setLifepoint(newLifepoint));
   yield put(setStatus('damage'));
   yield delay(500);
   yield put(setStatus('invincible'));
-  yield put(setLifepoint(newLifepoint));
   yield delay(1500);
   yield put(setStatus('normal'));
 }
