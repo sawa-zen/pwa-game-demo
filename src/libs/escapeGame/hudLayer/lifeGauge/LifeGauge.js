@@ -16,10 +16,11 @@ class LifeGauge extends PIXI.Container {
 
   update() {
     const { player } = store.getState();
-    const width = player.lifePoint / player.maxLifePoint * this._width;
+    const percentage = player.lifePoint / player.maxLifePoint;
+    const width = percentage * (this._width - 20);
     this._rect.clear();
-    this._rect.beginFill(0xffffff, 0.5);
-    this._rect.drawRect(0, 0, width, 20);
+    this._rect.beginFill(0x00ffff, 0.5);
+    this._rect.drawRect(10, 0, width, 20);
     this._rect.endFill();
   }
 }

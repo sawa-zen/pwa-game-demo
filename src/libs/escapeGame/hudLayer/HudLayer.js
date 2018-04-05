@@ -31,6 +31,7 @@ class HudLayer {
 
     // ライフゲージ
     this._lifeGauge = new LifeGauge();
+    this._lifeGauge.y = 10;
     this._stage.addChild(this._lifeGauge);
   }
 
