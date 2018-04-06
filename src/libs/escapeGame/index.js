@@ -68,8 +68,8 @@ class EscapeGame extends EventEmitter {
     this._hudLayer.setSize(w, h);
   }
 
-  emitPublicEvent(eventName) {
-    this.emit(eventName);
+  emitPublicEvent(eventName, payload) {
+    this.emit(eventName, payload);
   }
 
   retry() {

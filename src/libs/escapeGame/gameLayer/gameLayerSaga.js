@@ -8,7 +8,7 @@ import EscapeGame from '../index';
 
 function* runRequestCheckCollision() {
   const state = store.getState();
-  const { player } = state;
+  const { player, timer } = state;
   const { meteors } = state.meteorEmitter;
   let isCollision = false;
 
@@ -34,7 +34,7 @@ function* runRequestCheckCollision() {
     yield put(setStatus('destroyed'));
     yield put(setLifepoint(newLifepoint));
     yield put(stopTimer());
-    EscapeGame.instance.emitPublicEvent('destroyed');
+    EscapeGame.instance.emitPublicEvent('destroyed', timer.time);
     return;
   }
 

@@ -5,6 +5,7 @@ import Page from '../../components/Page';
 import EscapeGameBridge from './EscapeGameBridge';
 import PrimaryButton from '../../components/PrimaryButton';
 import { setCurrentPage } from '../../router/routerAction';
+import { setHighScore } from './gamePageAction';
 
 const GameOver = styled.div`
   position: absolute;
@@ -90,7 +91,8 @@ class GamePage extends React.Component {
     });
   };
 
-  _onDestroyed = () => {
+  _onDestroyed = (score) => {
+    this.props.onDestroyed(score);
     this.setState({
       status: 'gameover',
     });
@@ -100,6 +102,9 @@ class GamePage extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   onClickTop: () => {
     dispatch(setCurrentPage('top'));
+  },
+  onDestroyed: (score) => {
+    dispatch(setHighScore(score));
   },
 });
 
