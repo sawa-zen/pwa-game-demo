@@ -17,6 +17,17 @@ const Title = styled.h1`
   font-size: 48px;
 `;
 
+const HighScore = styled.div`
+  position: absolute;
+  top: 220px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+`;
+
 const StartButton = styled(PrimaryButton)`
   position: absolute;
   left: 0;
@@ -26,15 +37,26 @@ const StartButton = styled(PrimaryButton)`
   width: 200px;
 `;
 
-const TopScene = pure((props) => (
-  <Page>
-    <Title>METEOR<br/>ESCAPE</Title>
-    <StartButton
-      label="START"
-      onClick={props.onClickStart}
-    />
-  </Page>
-));
+const TopScene = pure((props) => {
+  const sec = ('000' + Math.floor(props.highScore / 60)).slice(-3);
+  const msec = ('00' + props.highScore % 60).slice(-2);
+  const time = `${sec}.${msec}`;
+
+  return (
+    <Page>
+      <Title>METEOR<br/>ESCAPE</Title>
+      <HighScore>HIGH SCORE：{time}</HighScore>
+      <StartButton
+        label="START"
+        onClick={props.onClickStart}
+      />
+    </Page>
+  );
+});
+
+const mapStateToProps = (state) => ({
+  highScore: state.gamePage.highScore,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onClickStart: () => {
@@ -43,6 +65,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(TopScene);
