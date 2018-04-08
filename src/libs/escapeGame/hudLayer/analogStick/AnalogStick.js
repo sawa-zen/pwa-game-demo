@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import { Vector2 } from 'three';
-import PixiAnalogStick, { PUBLIC_EVENT_NAME } from 'pixi-analog-stick';
+import PixiAnalogStick from 'pixi-analog-stick';
 import store from '../../store';
 import { setDirection } from '../../gameLayer/player/playerAction';
 
@@ -11,8 +11,8 @@ class AnalogStick extends PIXI.Container {
     // アナログスティック
     this._analogStick = new PixiAnalogStick();
     this._analogStick.alpha = 0.5;
-    this._analogStick.on(PUBLIC_EVENT_NAME.MOVE, this._onMoveStick);
-    this._analogStick.on(PUBLIC_EVENT_NAME.RELEASE, this._onReleaseStick);
+    this._analogStick.on('move', this._onMoveStick);
+    this._analogStick.on('release', this._onReleaseStick);
     this.addChild(this._analogStick);
   }
 

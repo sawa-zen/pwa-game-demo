@@ -3,7 +3,7 @@ const notifier = require('node-notifier');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-  devtool: 'inline-source-map',
+  devtool: 'devtool.source-map',
   output: {
     filename: '[name].js'
   },
