@@ -2,9 +2,13 @@ import EventEmitter from 'eventemitter2';
 import GameLayer from './gameLayer/GameLayer';
 import HudLayer from './hudLayer/HudLayer';
 import store from './store';
-import { resetGame } from './app/appAction';
+import { resetGame, checkClientSize } from './app/appAction';
 
 class EscapeGame extends EventEmitter {
+  _count = 0;
+  _clientWidth = 0;
+  _clientHeight = 0;
+
   get domElement() {
     return this._dom;
   }
@@ -22,6 +26,8 @@ class EscapeGame extends EventEmitter {
 
     // DOM
     this._dom = document.createElement('div');
+    this._dom.style.width = '100%';
+    this._dom.style.height = '100%';
     this._dom.style.position = 'relative';
 
     // ゲームレイヤー
@@ -44,6 +50,8 @@ class EscapeGame extends EventEmitter {
     this._hudLayer.domElement.style.margin = 'auto';
     this._dom.appendChild(this._hudLayer.domElement);
 
+    this._resize();
+
     // 描画開始
     this._render();
 
@@ -51,17 +59,25 @@ class EscapeGame extends EventEmitter {
     return this;
   }
 
-  setSize(width, height) {
-    this._dom.style.width = `${width}px`;
-    this._dom.style.height = `${height}px`;
+  _resize() {
+    if (
+      this._clientWidth === this._dom.clientWidth &&
+      this._clientHeight === this._dom.clientHeight
+    ) {
+      return;
+    }
 
-    let w, h;
-    if (height < width / 9 * 16) {
-      w = height / 16 * 9;
-      h = height;
+    this._clientWidth = this._dom.clientWidth;
+    this._clientHeight = this._dom.clientHeight;
+
+    let w = this._clientWidth,
+          h = this._clientHeight;
+    if (this._clientHeight < this._clientWidth / 9 * 16) {
+      w = this._clientHeight / 16 * 9;
+      h = this._clientHeight;
     } else {
-      w = width;
-      h = width / 9 * 16;
+      w = this._clientWidth;
+      h = this._clientWidth / 9 * 16;
     }
 
     this._gameLayer.setSize(w, h);
@@ -83,9 +99,14 @@ class EscapeGame extends EventEmitter {
   }
 
   _render = () => {
+    this._count++;
     this._animationFrameId = requestAnimationFrame(this._render);
     this._gameLayer.update();
     this._hudLayer.update();
+
+    if (this._count % 5 === 0) {
+      this._resize();
+    }
   };
 }
 

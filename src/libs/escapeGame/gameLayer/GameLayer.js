@@ -12,6 +12,8 @@ import { updateMeteors } from './meteorEmitter/meteorEmitterAction';
 import { requestCheckCollision } from './gameLayerAction';
 
 class GameLayer {
+  _count = 0;
+
   get domElement() {
     return this._renderer.domElement;
   }
@@ -49,9 +51,14 @@ class GameLayer {
   }
 
   update() {
+    this._count++;
+
     store.dispatch(updatePlayer());
     store.dispatch(updateMeteors());
-    store.dispatch(requestCheckCollision());
+
+    if (this._count % 2) {
+      store.dispatch(requestCheckCollision());
+    }
 
     this._player.update();
     this._meteorEmitter.update();

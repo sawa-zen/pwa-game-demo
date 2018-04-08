@@ -20,7 +20,6 @@ class EscapeGameBridge extends React.Component {
 
   componentDidMount() {
     this._game = new EscapeGame();
-    this._game.setSize(this._element.clientWidth, this._element.clientHeight);
     this._game.on('destroyed', this.props.onDestroyed);
     this._element.appendChild(this._game.domElement);
   }
