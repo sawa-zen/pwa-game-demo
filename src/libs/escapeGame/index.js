@@ -38,6 +38,7 @@ class EscapeGame extends EventEmitter {
     this._gameLayer.domElement.style.right = '0';
     this._gameLayer.domElement.style.bottom = '0';
     this._gameLayer.domElement.style.margin = 'auto';
+    this._gameLayer.setSize(0, 0);
     this._dom.appendChild(this._gameLayer.domElement);
 
     // HUDレイヤー
@@ -48,9 +49,8 @@ class EscapeGame extends EventEmitter {
     this._hudLayer.domElement.style.right = '0';
     this._hudLayer.domElement.style.bottom = '0';
     this._hudLayer.domElement.style.margin = 'auto';
+    this._hudLayer.setSize(0, 0);
     this._dom.appendChild(this._hudLayer.domElement);
-
-    this._resize();
 
     // 描画開始
     this._render();
@@ -71,7 +71,7 @@ class EscapeGame extends EventEmitter {
     this._clientHeight = this._dom.clientHeight;
 
     let w = this._clientWidth,
-          h = this._clientHeight;
+        h = this._clientHeight;
     if (this._clientHeight < this._clientWidth / 9 * 16) {
       w = this._clientHeight / 16 * 9;
       h = this._clientHeight;
@@ -104,7 +104,7 @@ class EscapeGame extends EventEmitter {
     this._gameLayer.update();
     this._hudLayer.update();
 
-    if (this._count % 5 === 0) {
+    if (this._count % 10 === 0) {
       this._resize();
     }
   };
