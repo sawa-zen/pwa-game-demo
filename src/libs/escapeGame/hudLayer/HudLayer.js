@@ -48,9 +48,9 @@ class HudLayer {
     const { player } = store.getState();
 
     if (player.status === 'destroyed') {
-      this._analogStick.visible = false;
+      this._analogStick.hide();
     } else {
-      this._analogStick.visible = true;
+      this._analogStick.show();
     }
 
     store.dispatch(updateTime());

@@ -16,6 +16,15 @@ class AnalogStick extends PIXI.Container {
     this.addChild(this._analogStick);
   }
 
+  show() {
+    this.visible = true;
+  }
+
+  hide() {
+    this.visible = false;
+    this._analogStick.reset();
+  }
+
   _onMoveStick = (stickData) => {
     store.dispatch(setDirection(new Vector2(
       stickData.x,
