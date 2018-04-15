@@ -16,7 +16,7 @@
     "url": "https://github.com/topotal/fe-base/issues"
   },
   "dependencies": {
-    "@sawa-zen/escape-game": "0.0.6",
+    "@sawa-zen/escape-game": "0.0.7",
     "babel-polyfill": "^6.26.0",
     "escape-game": "git://github.com/sawa-zen/escape-game.git",
     "react": "^16.3.1",
