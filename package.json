@@ -16,10 +16,9 @@
     "url": "https://github.com/topotal/fe-base/issues"
   },
   "dependencies": {
+    "@sawa-zen/escape-game": "0.0.4",
     "babel-polyfill": "^6.26.0",
-    "eventemitter2": "^5.0.1",
-    "pixi-analog-stick": "^1.0.8",
-    "pixi.js": "^4.7.3",
+    "escape-game": "git://github.com/sawa-zen/escape-game.git",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-redux": "^5.0.7",
@@ -27,7 +26,6 @@
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
     "styled-components": "^3.2.3",
-    "three": "^0.91.0",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {

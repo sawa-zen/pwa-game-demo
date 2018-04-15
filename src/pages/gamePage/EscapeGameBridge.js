@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import EscapeGame from '../../libs/escapeGame';
+import EscapeGame from '@sawa-zen/escape-game';
 
 const Wrapper = styled.div`
   width: 100%;
