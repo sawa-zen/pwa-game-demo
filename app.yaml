@@ -6,12 +6,9 @@ handlers:
   static_files: public/index.html
   upload: public/index.html
 
-- url: /(.*\.(html|js))$
+- url: /(.*)
   static_files: public/\1
-  upload: public/.*\.(html|js)$
-
-- url: /.*
-  script: _go_app
+  upload: public/(.*)
 
 skip_files:
   - ^node_modules/(?!node\.js$).*
