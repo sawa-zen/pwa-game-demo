@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const projectRootPath = path.resolve(__dirname, './');
 const assetsPath = path.resolve(projectRootPath, './public');
 
