@@ -65,7 +65,7 @@ const TopScene = pure((props) => {
         onClick={props.onClickStart}
       />
       <MadeBy>
-        made my <a href="https://twitter.com/sawada_tkys?lang=ja" target="_blank">@sawa-zen</a>
+        made by <a href="https://twitter.com/sawada_tkys?lang=ja" target="_blank">@sawa-zen</a>
       </MadeBy>
     </Page>
   );
