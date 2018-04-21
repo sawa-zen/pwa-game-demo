@@ -37,6 +37,20 @@ const StartButton = styled(PrimaryButton)`
   width: 200px;
 `;
 
+const MadeBy = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  color: white;
+  text-align: center;
+  font-size: 0.8rem;
+
+  a {
+    color: #44ACEB;
+  }
+`;
+
 const TopScene = pure((props) => {
   const sec = ('000' + Math.floor(props.highScore / 60)).slice(-3);
   const msec = ('00' + props.highScore % 60).slice(-2);
@@ -50,6 +64,9 @@ const TopScene = pure((props) => {
         label="START"
         onClick={props.onClickStart}
       />
+      <MadeBy>
+        made my <a href="https://twitter.com/sawada_tkys?lang=ja" target="_blank">@sawa-zen</a>
+      </MadeBy>
     </Page>
   );
 });
