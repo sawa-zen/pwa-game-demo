@@ -17,6 +17,11 @@ class Page extends React.Component {
     className: '',
   };
 
+  constructor(props) {
+    super(props);
+    this.wrapperRef = React.createRef();
+  }
+
   componentDidMount() {
     this._resize();
     window.addEventListener('resize', this._resize);
@@ -31,11 +36,11 @@ class Page extends React.Component {
     const height = window.innerHeight;
 
     if (width / 9 * 16 > height) {
-      this._element.style.width = `${Math.floor(height / 16 * 9)}px`;
-      this._element.style.height = `${height}px`;
+      this.wrapperRef.current.style.width = `${Math.floor(height / 16 * 9)}px`;
+      this.wrapperRef.current.style.height = `${height}px`;
     } else {
-      this._element.style.width = `${width}px`;
-      this._element.style.height = `${Math.floor(width / 9 * 16)}px`;
+      this.wrapperRef.current.style.width = `${width}px`;
+      this.wrapperRef.current.style.height = `${Math.floor(width / 9 * 16)}px`;
     }
   };
 
@@ -43,7 +48,7 @@ class Page extends React.Component {
     return (
       <Wrapper
         className={this.props.className}
-        innerRef={element => { this._element = element; }}
+        ref={this.wrapperRef}
       >
         {this.props.children}
       </Wrapper>

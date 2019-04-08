@@ -14,6 +14,11 @@ class EscapeGameBridge extends React.Component {
     onDestroyed: () => {},
   };
 
+  constructor(props) {
+    super(props);
+    this.wrapperRef = React.createRef();
+  }
+
   shouldComponentUpdate() {
     return false;
   }
@@ -21,7 +26,7 @@ class EscapeGameBridge extends React.Component {
   componentDidMount() {
     this._game = new EscapeGame();
     this._game.on('destroyed', this.props.onDestroyed);
-    this._element.appendChild(this._game.domElement);
+    this.wrapperRef.current.appendChild(this._game.domElement);
   }
 
   componentWillUnmount() {
@@ -41,7 +46,7 @@ class EscapeGameBridge extends React.Component {
     return (
       <Wrapper
         className={this.props.className}
-        innerRef={element => this._element = element }
+        ref={this.wrapperRef}
       />
     );
   }
